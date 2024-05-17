@@ -20,6 +20,7 @@ namespace Domain.Common
                 return CurrentPage > 1;
             }
         }
+
         public bool? HasNext
         {
             get
@@ -30,6 +31,7 @@ namespace Domain.Common
                 return CurrentPage < TotalPages;
             }
         }
+
         public object? Data { get; set; } = null;
 
         public static ApiResponse Success<T>(T data)

@@ -3,14 +3,17 @@
     public class AppConfig
     {
         public static bool IsDevelopmentEnvironment { get; set; } = false;
-        public static ConnectionStrings ConnectionStrings
-        { get; set; }
+        public static ConnectionStrings ConnectionStrings { get; set; }
         public static FirebaseConfig FirebaseConfig { get; set; }
         public static JwtSetting JwtSetting { get; set; }
         public static CorsConfig CorsConfig { get; set; }
         public static RedisConfig RedisConfig { get; set; }
         public static SwaggerConfig SwaggerConfig { get; set; }
         public static SentryConfig SentryConfig { get; set; }
+
+        public static void LoadConfigurations()
+        {
+        }
     }
 
     public class FirebaseConfig
