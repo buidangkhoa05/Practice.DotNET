@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Common.Entity
+namespace Domain.Common.Entities
 {
     public interface IEntityBase : IAuditable, IDeletable, IIdentifiable
     {

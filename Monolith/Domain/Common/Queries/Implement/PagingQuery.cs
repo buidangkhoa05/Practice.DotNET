@@ -1,11 +1,14 @@
-﻿namespace Domain.Common.PagedList
+﻿using Domain.Common.Queries.Interface;
+
+namespace Domain.Common.Queries.Implement
 {
-    public class PagingQuery
+    public class PagingQuery<TResult> : IPagingQuery<TResult>
+        where TResult : class
     {
         const int maxPageSize = 50;
         private int _pageSize = 0;
 
-        public int PageNumber { get; set; } = 1;
+        public int PageIndex { get; set; } = 1;
         public int PageSize
         {
             get
@@ -20,13 +23,13 @@
 
         public PagingQuery()
         {
-            PageNumber = 1;
+            PageIndex = 1;
             PageSize = 10;
         }
 
         public PagingQuery(int? pageNumer, int? pageSize)
         {
-            PageNumber = pageNumer ?? 1;
+            PageIndex = pageNumer ?? 1;
             PageSize = pageSize ?? 10;
         }
     }

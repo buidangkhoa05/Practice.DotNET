@@ -1,4 +1,4 @@
-﻿using Domain.Common.Entity;
+﻿using Domain.Common.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;

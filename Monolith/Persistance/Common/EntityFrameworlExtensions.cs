@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Domain.Common.PagedList;
 using Mapster;
+using Domain.Common.Queries.Interface;
 
 namespace Persistence.Common
 {
@@ -106,7 +107,7 @@ namespace Persistence.Common
         }
 
         public static async Task<IPagedList<TResult>> ToPagedListAsync<TEntity, TResult>(this IQueryable<TEntity> query,
-           PagingQuery pagingQuery)
+           IPagingQuery<TResult> pagingQuery)
            where TEntity : class
            where TResult : class
         {
@@ -117,10 +118,10 @@ namespace Persistence.Common
         }
 
         public static async Task<IPagedList<TEntity>> ToPagedListAsync<TEntity>(this IQueryable<TEntity> query,
-            PagingQuery pagingQuery)
+            IPagingQuery<TEntity> pagingQuery)
             where TEntity : class
         {
-            pagingQuery ??= new PagingQuery();
+            pagingQuery ??= new PagingQuery<TEntity>();
             var pagedList = new PagedList<TEntity>();
             await pagedList.LoadDataAsync(query, pagingQuery);
             return pagedList;

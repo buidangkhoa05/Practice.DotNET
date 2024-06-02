@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  monolith:
+    image: ${DOCKER_REGISTRY-}monolith
+    build:
+      context: .
+      dockerfile: Monolith/Dockerfile

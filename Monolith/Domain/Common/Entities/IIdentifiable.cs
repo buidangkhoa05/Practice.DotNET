@@ -1,4 +1,4 @@
-﻿namespace Domain.Common.Entity
+﻿namespace Domain.Common.Entities
 {
     public interface IIdentifiable
     {

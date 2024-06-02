@@ -1,6 +1,6 @@
-﻿using Domain.Common.Entity;
+﻿using Domain.Common.Entities;
 
-namespace Domain.Entity
+namespace Domain.Entities
 {
     public class TodoItem : EntityBase
     {

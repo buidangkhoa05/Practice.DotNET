@@ -1,4 +1,4 @@
-﻿using Domain.Persistence.Common;
+﻿using Domain.Common.Persistence;
 using Persistence.Common;
 using Persistence.DbContexts;
 using Persistence.Interceptors;

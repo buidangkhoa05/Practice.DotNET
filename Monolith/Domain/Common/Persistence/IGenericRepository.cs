@@ -1,18 +1,15 @@
-﻿using Domain.Common.Entity;
+﻿using Domain.Common.Entities;
 using Domain.Common.PagedList;
+using Domain.Common.Queries.Interface;
 
-namespace Domain.Persistence.Common
+namespace Domain.Common.Persistence
 {
-    public interface IGenericRepository<TEntity> : IRepositoryBase 
+    public interface IGenericRepository<TEntity> : IRepositoryBase
         where TEntity : EntityBase
     {
         #region Query
         Task<TEntity?> FindAsync(int entityId);
-        Task<IEnumerable<TEntity>> GetAllAsync();
         Task<IEnumerable<TResult>> GetAllAsync<TResult>() where TResult : class;
-        Task<IPagedList<TEntity>> SearchAsync(string keySearch, PagingQuery pagingQuery, string orderBy);
-        Task<IPagedList<TResult>> SearchAsync<TResult>(string keySearch, PagingQuery pagingQuery, string orderBy)
-            where TResult : class;
         Task<bool> IsExistAsync(params int[] ids);
         #endregion Query
 

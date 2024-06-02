@@ -1,5 +1,5 @@
 ﻿using Domain.Common;
-using Domain.Entity;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistence.DataConfigurations;
 using Persistence.Interceptors;

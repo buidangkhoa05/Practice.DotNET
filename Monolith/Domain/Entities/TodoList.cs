@@ -1,8 +1,8 @@
-﻿using Domain.Common.Entity;
+﻿using Domain.Common.Entities;
 using Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entity
+namespace Domain.Entities
 {
     public class TodoList : EntityBase
     {

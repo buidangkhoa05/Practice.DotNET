@@ -1,8 +1,8 @@
-﻿using Domain.Common.Entity;
+﻿using Domain.Common.Entities;
 using Domain.Common.PagedList;
-using Domain.Persistence.Common;
+using Domain.Common.Persistence;
+using Domain.Common.Queries.Interface;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Persistence.Common
 {
@@ -23,13 +23,6 @@ namespace Persistence.Common
             return await _dbSet.FindAsync(entityId);
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            return await _dbSet.WhereWithExist()
-                                .ToListAsync()
-                                .ConfigureAwait(false);
-        }
-
         public virtual async Task<IEnumerable<TResult>> GetAllAsync<TResult>()
             where TResult : class
         {
@@ -48,10 +41,9 @@ namespace Persistence.Common
                 .AnyAsync();
         }
 
-        public abstract Task<IPagedList<TEntity>> SearchAsync(string keySearch, PagingQuery pagingQuery, string orderBy);
-
-        public abstract Task<IPagedList<TResult>> SearchAsync<TResult>(string keySearch, PagingQuery pagingQuery, string orderBy)
-            where TResult : class;
+        public abstract Task<IPagedList<TResult>> SearchAsync<TQuery, TResult>(in TQuery query)
+                  where TQuery : IPagingQuery<TResult>
+                  where TResult : class;
 
         public async Task CreateAsync(params TEntity[] entities)
         {

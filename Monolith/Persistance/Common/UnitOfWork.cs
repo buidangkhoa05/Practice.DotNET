@@ -1,5 +1,5 @@
-﻿using Domain.Common.Entity;
-using Domain.Persistence.Common;
+﻿using Domain.Common.Entities;
+using Domain.Common.Persistence;
 using Microsoft.EntityFrameworkCore.Storage;
 using Persistence.DbContexts;
 using System.Reflection;
@@ -59,27 +59,20 @@ namespace Persistence.Common
             transaction = null;
         }
 
-        public IGenericRepository<TEntity> Resolve<TEntity>()
-            where TEntity : EntityBase
+        public TRepostitoy Instance<TRepostitoy>(Type? entityType = null)
+           where TRepostitoy : IRepositoryBase
         {
-            var repository = GetOrSetRepository<IGenericRepository<TEntity>>(typeof(TEntity).Name);
-            return repository;
-        }
-
-        public TEntityRepository Resolve<TEntityRepository>(Type? entityType = null)
-            where TEntityRepository : IRepositoryBase
-        {
-            entityType ??= typeof(TEntityRepository).GetInterface("IGenericRepository`1")?.GenericTypeArguments.FirstOrDefault();
+            entityType ??= typeof(TRepostitoy).GetInterface("IGenericRepository`1")?.GenericTypeArguments.FirstOrDefault();
 
             if (entityType?.GetInterface(nameof(IEntityBase)) != null) // entity is derived from IEntity
             {
-                return GetOrSetRepository<TEntityRepository>(entityType.Name);
+                return SetOrGetRepository<TRepostitoy>(entityType.Name);
             }
 
             throw new ArgumentException("Entity must be derived from IEntity");
         }
 
-        private Repository GetOrSetRepository<Repository>(string entityName)
+        private Repository SetOrGetRepository<Repository>(string entityName)
            where Repository : IRepositoryBase
         {
             var instance = _repoCache.GetValueOrDefault(entityName);

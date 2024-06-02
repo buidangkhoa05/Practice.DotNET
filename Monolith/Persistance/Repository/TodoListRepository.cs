@@ -1,7 +1,9 @@
-﻿using Domain.Entity;
-using Domain.Persistence.Repository;
+﻿using Domain.Common.PagedList;
+using Domain.Entities;
+using Domain.TodoLists.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Persistence.Common;
-using System.Data.Entity;
 
 namespace Persistence.Repository
 {
@@ -10,5 +12,7 @@ namespace Persistence.Repository
         public TodoListRepository(DbContext dbContext) : base(dbContext)
         {
         }
+
+      
     }
 }

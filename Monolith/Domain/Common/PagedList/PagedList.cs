@@ -1,9 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Domain.Common.Queries.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Common.PagedList
 {
-    public class PagedList<TEntity> : List<TEntity>, IPagedList<TEntity> where TEntity : class
+    public class PagedList<TEntity> : List<TEntity>, IPagedList<TEntity>
+        where TEntity : class
     {
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
@@ -55,22 +56,22 @@ namespace Domain.Common.PagedList
             CurrentPage = pageNumber;
             TotalPages = (int)Math.Ceiling(queryList.Count() / (double)pageSize);
 
-            AddRange(items);
+            this.AddRange(items);
         }
 
-        public async Task LoadDataAsync(IQueryable<TEntity> queryList, PagingQuery paginationParams)
+        public async Task LoadDataAsync(IQueryable<TEntity> queryList, IPagingQuery<TEntity> pagingQuery)
         {
-            if (paginationParams == null)
+            if (pagingQuery == null)
             {
-                throw new ArgumentNullException(nameof(paginationParams));
+                throw new ArgumentNullException(nameof(pagingQuery));
             }
 
-            if (paginationParams.PageSize <= 0 || paginationParams.PageNumber <= 0)
+            if (pagingQuery.PageSize <= 0 || pagingQuery.PageIndex <= 0)
             {
                 throw new ArgumentException("Page number or page size must be greater than 0");
             }
 
-            await LoadData(queryList, paginationParams.PageNumber, paginationParams.PageSize);
+            await LoadData(queryList, pagingQuery.PageIndex, pagingQuery.PageSize);
         }
     }
 }

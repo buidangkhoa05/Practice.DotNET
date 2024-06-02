@@ -1,5 +1,5 @@
-﻿using Domain.Entity;
-using Domain.Persistence.Repository;
+﻿using Domain.Entities;
+using Domain.TodoLists.Repository;
 using Persistence.Common;
 using System.Data.Entity;
 

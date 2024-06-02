@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Common.Entity
+namespace Domain.Common.Entities
 {
     public interface IAuditable
     {
