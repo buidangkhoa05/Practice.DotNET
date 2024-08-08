@@ -1,11 +1,11 @@
 ﻿using Domain.Entities;
 using Domain.TodoLists.Repository;
-using Persistence.Common;
+using Infrastructure.Data.Common;
 using System.Data.Entity;
 
-namespace Persistence.Repository
+namespace Infrastructure.Data.Repositories
 {
-    public class TodoItemRepository : GenericRepository<TodoItem>, ITodoItemRepository
+    public class TodoItemRepository : Repository<TodoItem>, ITodoItemRepository
     {
         public TodoItemRepository(DbContext dbContext) : base(dbContext)
         {

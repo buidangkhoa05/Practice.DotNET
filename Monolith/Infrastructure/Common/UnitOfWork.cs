@@ -1,10 +1,10 @@
 ﻿using Domain.Common.Entities;
 using Domain.Common.Persistence;
+using Infrastructure.Data.DbContexts;
 using Microsoft.EntityFrameworkCore.Storage;
-using Persistence.DbContexts;
 using System.Reflection;
 
-namespace Persistence.Common
+namespace Infrastructure.Common
 {
     public class UnitOfWork : IUnitOfWork
     {

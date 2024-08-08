@@ -1,5 +1,5 @@
 ﻿using Domain.Common.Persistence;
-using Persistence.Common;
+using Infrastructure.Data.Common;
 using Persistence.DbContexts;
 using Persistence.Interceptors;
 

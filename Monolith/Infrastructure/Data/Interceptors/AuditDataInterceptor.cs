@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 
-namespace Persistence.Interceptors
+namespace Infrastructure.Data.Interceptors
 {
     public class AuditDataInterceptor : SaveChangesInterceptor, ISaveChangesInterceptor
     {
@@ -30,7 +30,7 @@ namespace Persistence.Interceptors
                         auditable.CreatedBy = 0;
                         auditable.UpdatedBy = 0;
                     }
-                    else if (entity.State == EntityState.Modified  || entity.HasChangedOwnedEntities()) 
+                    else if (entity.State == EntityState.Modified || entity.HasChangedOwnedEntities())
                     {
                         auditable.UpdatedDate = utcNow;
                         auditable.UpdatedBy = 0;

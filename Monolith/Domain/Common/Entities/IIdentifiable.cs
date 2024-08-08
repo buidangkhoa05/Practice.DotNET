@@ -1,7 +1,7 @@
 ﻿namespace Domain.Common.Entities
 {
-    public interface IIdentifiable
+    public interface IIdentifiable<T>
     {
-        public int Id { get; set; }
+        public T Id { get; set; }
     }
 }

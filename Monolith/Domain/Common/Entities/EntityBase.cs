@@ -1,20 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Common.Entities
 {
-    public interface IEntityBase : IAuditable, IDeletable, IIdentifiable
+    public interface IEntityBase<TKey> : IAuditable<TKey>, IDeletable, IIdentifiable<TKey>
     {
 
     }
 
-    public class EntityBase : IEntityBase
+    public class EntityBase<TKey> : IEntityBase<TKey>
+        where TKey : notnull
     {
         [Key]
-        public int Id { get; set; }
+        public virtual required TKey Id { get; set; } 
         public bool IsDeleted { get; set; } = false;
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public int CreatedBy { get; set; }
-        public DateTime UpdatedDate { get; set; } = DateTime.Now;
-        public int UpdatedBy { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+        public TKey? CreatedBy { get; set; } = default;
+        public DateTime UpdatedDate { get; set; } = DateTime.UtcNow;
+        public TKey? UpdatedBy { get; set; } = default;
     }
 }

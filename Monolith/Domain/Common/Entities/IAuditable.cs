@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Common.Entities
 {
-    public interface IAuditable
+    public interface IAuditable<TKey>
     {
         DateTime CreatedDate { get; set; }
-        int CreatedBy { get; set; }
+        TKey? CreatedBy { get; set; }
         DateTime UpdatedDate { get; set; }
-        int UpdatedBy { get; set; }
+        TKey? UpdatedBy { get; set; }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Domain.Common;
 using Domain.Entities;
+using Infrastructure.Data.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Persistence.DataConfigurations;
-using Persistence.Interceptors;
 
-namespace Persistence.DbContexts
+namespace Infrastructure.Data.DbContexts
 {
     public class ApplicationDbContext(
         AuditDataInterceptor auditDataInterceptor

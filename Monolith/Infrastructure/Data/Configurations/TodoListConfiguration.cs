@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Persistence.DataConfigurations
+namespace Infrastructure.Data.Configurations
 {
     public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
     {
@@ -11,7 +11,7 @@ namespace Persistence.DataConfigurations
             builder.HasKey(x => x.Id);
             builder.HasMany(x => x.TodoItems)
                 .WithOne(x => x.TodoList)
-                .HasForeignKey(x => x.TodoListId);  
+                .HasForeignKey(x => x.TodoListId);
         }
     }
 }
